@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9bc7855b-ac52-4fb5-8882-c77e728f700c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1XjlIvKsOmWcW4bUFsJxoNSkfWO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9bc7855b-ac52-4fb5-8882-c77e728f700c" name="Default Changelist" comment="" />
+      <created>1581567307954</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581567307954</updated>
+      <workItem from="1581567311884" duration="9577000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2263" y="294" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581579162766">
+      <screen x="2048" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2263" y="294" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2048.0.1920.1080/0.0.2048.1152@2048.0.1920.1080" timestamp="1581579162766" />
+    <state x="2048" y="121" key="SettingsEditor" timestamp="1581578758297">
+      <screen x="2048" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2048" y="121" key="SettingsEditor/2048.0.1920.1080/0.0.2048.1152@2048.0.1920.1080" timestamp="1581578758297" />
+    <state x="2190" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1581577361401">
+      <screen x="2048" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2190" y="241" width="670" height="676" key="search.everywhere.popup/2048.0.1920.1080/0.0.2048.1152@2048.0.1920.1080" timestamp="1581577361401" />
+  </component>
+</project>
