@@ -44,7 +44,7 @@ async function autoConfig() {
 
   // 2. append tinker.gradle to module's build.gradle
   const moduleGradle = `${argv.module}/build.gradle`;
-  const moduleGradleAppendConfig = '\r\napply from: "https://gist.githubusercontent.com/longnguyen2/e5a2d8be2a4a9394e1812abcaa3f4691/raw/98b0bcc424804d956575719ebffc5454d03c1fbd/tinker.gradle"';
+  const moduleGradleAppendConfig = '\r\napply from: "https://raw.githubusercontent.com/longnguyen2/hotfix-plugin/master/tinker.gradle"';
   console.log(`Configuring ${moduleGradle}`);
   fs.appendFileSync(moduleGradle, moduleGradleAppendConfig);
 
