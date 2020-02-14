@@ -37,14 +37,14 @@ fi
 echo Connection success
 echo Making directories
 sshpass -p ${pwd} ssh ${usr}@${domain} "mkdir $serverDir/archive; mkdir $serverDir/archive/$topic; mkdir $serverDir/archive/$topic/$version"
-echo Sending file from ./app/build/bakApk/app-${version}.apk to ${usr}@${domain}:${serverDir}/archive/${topic}/${version}/
-cp ./app/build/bakApk/app-${version}.apk ./app/build/bakApk/app.apk
-sshpass -p ${pwd} scp  ./app/build/bakApk/app.apk ${usr}@${domain}:${serverDir}/archive/${topic}/${version} && success=true
-rm ./app/build/bakApk/app.apk
-echo Sending file from ./app/build/bakApk/app-${version}-R.txt to ${usr}@${domain}:${serverDir}/archive/${topic}/${version}/
-cp ./app/build/bakApk/app-${version}-R.txt ./app/build/bakApk/app-R.txt
-sshpass -p ${pwd} scp ./app/build/bakApk/app-R.txt ${usr}@${domain}:${serverDir}/archive/${topic}/${version} && success=true
-rm ./app/build/bakApk/app-R.txt
+echo Sending file from ../app/build/bakApk/app-${version}.apk to ${usr}@${domain}:${serverDir}/archive/${topic}/${version}/
+cp ../app/build/bakApk/app-${version}.apk ../app/build/bakApk/app.apk
+sshpass -p ${pwd} scp  ../app/build/bakApk/app.apk ${usr}@${domain}:${serverDir}/archive/${topic}/${version} && success=true
+rm ../app/build/bakApk/app.apk
+echo Sending file from ../app/build/bakApk/app-${version}-R.txt to ${usr}@${domain}:${serverDir}/archive/${topic}/${version}/
+cp ../app/build/bakApk/app-${version}-R.txt ../app/build/bakApk/app-R.txt
+sshpass -p ${pwd} scp ../app/build/bakApk/app-R.txt ${usr}@${domain}:${serverDir}/archive/${topic}/${version} && success=true
+rm ../app/build/bakApk/app-R.txt
 if [[ "$success" = true ]]; then
     echo Send file success
 else
