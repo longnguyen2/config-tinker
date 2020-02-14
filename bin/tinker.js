@@ -3,23 +3,10 @@
 const yargs = require('yargs');
 const fs = require('fs');
 const xmlParser = require('xml-js');
+const firebaseTools = require('firebase-tools');
+const firebaseAppUtils = require('firebase-tools/lib/management/apps');
 
 const { version } = require('../package');
-
-const { argv } = yargs
-  .usage('Usage: tinker --module <module_path>')
-  .option('m', {
-    alias: 'module',
-    describe: 'Specify path of module to be implemented tinker'
-  })
-  .require('module')
-  .help('help', 'Show this help and exit')
-  .version(version);
-
-if (!fs.existsSync(argv.module)) {
-  console.error('Project module does not exist');
-  process.exit(1);
-}
 
 async function autoConfig() {
   console.log('Tinker auto config:');
@@ -27,18 +14,18 @@ async function autoConfig() {
   const projectPath = argv.module.substring(0, argv.module.lastIndexOf("/"));
   const projectGradle = `${projectPath}/build.gradle`;
   const projectGradleAppendConfig = `\r\n
-  buildscript {
-      dependencies {
-          classpath "com.tencent.tinker:tinker-patch-gradle-plugin:1.9.14"
-          classpath "com.google.gms:google-services:4.3.3"
-      }
-  }
-  
-  allprojects {
-      repositories {
-          maven { url "https://jitpack.io" }
-      }
-  }`;
+buildscript {
+    dependencies {
+        classpath "com.tencent.tinker:tinker-patch-gradle-plugin:1.9.14"
+        classpath "com.google.gms:google-services:4.3.3"
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}`;
   console.log(`Configuring ${projectGradle}`);
   fs.appendFileSync(projectGradle, projectGradleAppendConfig);
 
@@ -72,8 +59,69 @@ async function autoConfig() {
   fs.copyFileSync('/usr/local/lib/node_modules/config-tinker/script/copy-archive.sh', `${scriptDir}/copy-archive.sh`);
   fs.copyFileSync('/usr/local/lib/node_modules/config-tinker/script/notify-update.sh', `${scriptDir}/notify-update.sh`);
   fs.copyFileSync('/usr/local/lib/node_modules/config-tinker/script/ssh.cfg', `${scriptDir}/ssh.cfg`);
+}
 
+async function downloadGoogleServicesJson() {
+  // login with firebase account
+  console.log('Login firebase with email and password');
+  await firebaseTools.login();
+
+  // check app info
+  const moduleManifest = `${argv.module}/src/main/AndroidManifest.xml`;
+  const xml = fs.readFileSync(moduleManifest, 'utf8');
+  const parseResult = xmlParser.xml2js(xml, {compact: true});
+  const packageName = parseResult['manifest']['_attributes']['package'];
+
+  console.log('Create new firebase app');
+  let appId;
+  try {
+    const result = await firebaseTools.apps.create('Android', packageName, {
+      project: 'instagramupdate-253a7',
+      packageName: packageName
+    });
+    appId = result.appId;
+  } catch (e) {
+    console.log('App already existed');
+    const appList = await firebaseAppUtils.listFirebaseApps('instagramupdate-253a7', 'ANDROID');
+    appId = appList.filter(app => app.packageName === packageName)[0].appId;
+  }
+
+  // get google-services.json
+  await firebaseTools.apps.sdkconfig('Android', appId, {project: 'instagramupdate-253a7', out: `${argv.module}/google-services.json`});
   console.log(`Finished, now sync project in android studio`);
 }
 
-autoConfig().catch(e => console.error('Error: ' + e));
+const { argv } = yargs
+  .usage('Usage: tinker --module <module_path>')
+  .option('m', {
+    alias: 'module',
+    describe: 'Specify path of module to be implemented tinker'
+  })
+  .options('c', {
+    alias: 'config',
+    describe: 'Auto config tinker'
+  })
+  .option('f', {
+    alias: 'firebase',
+    describe: 'Download google-services.json'
+  })
+  .require('module')
+  .help('help', 'Show this help and exit')
+  .version(version);
+
+if (argv.config || argv.firebase) {
+  if (!fs.existsSync(argv.module)) {
+    console.error('Project module does not exist');
+    process.exit(1);
+  }
+
+  if (argv.config) {
+    autoConfig().catch(e => console.error('Error: ' + e));
+  } else {
+    downloadGoogleServicesJson().catch(e => console.error('Error: ' + e));
+  }
+} else {
+  yargs.showHelp();
+  console.error('\nNeed one of two flags: --config or --firebase');
+  process.exit(1);
+}
