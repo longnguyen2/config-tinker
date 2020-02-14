@@ -11,7 +11,7 @@ const { version } = require('../package');
 async function autoConfig() {
   console.log('Tinker auto config:');
   // 1. add classpath to project's build.gradle
-  const projectPath = argv.module.substring(0, argv.module.lastIndexOf("/"));
+  const projectPath = `${argv.module}/..`;
   const projectGradle = `${projectPath}/build.gradle`;
   const projectGradleAppendConfig = `\r\n
 buildscript {
