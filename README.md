@@ -7,10 +7,10 @@ Then run `config-tinker --module /Users/admin/Downloads/TestTinker/app --config`
 Email and password: view in notebook
 
 3. Migrate Application class to ApplicationLike class  
-Before  
-<img src="https://imgur.com/YtlFUJ7" />  
-After  
-<img src="https://imgur.com/B3Uxjiu" />  
+    Before  
+    <img src="https://i.imgur.com/YtlFUJ7.png" />  
+    After  
+    <img src="https://i.imgur.com/B3Uxjiu.png" />  
 4. Add this line to launcher activity onCreate method  
-PatchingUtil.checkForUpdate(this);  
-<img src="https://imgur.com/VIfXE9e" />  
+    PatchingUtil.checkForUpdate(this);  
+    <img src="https://i.imgur.com/VIfXE9e.png" />  
